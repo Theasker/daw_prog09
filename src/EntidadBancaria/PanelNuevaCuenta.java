@@ -8,12 +8,12 @@ package EntidadBancaria;
  *
  * @author theasker
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class PanelNuevaCuenta extends javax.swing.JPanel {
 
   /**
-   * Creates new form NewJPanel
+   * Creates new form PanelNuevaCuenta
    */
-  public NewJPanel() {
+  public PanelNuevaCuenta() {
     initComponents();
   }
 

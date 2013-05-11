@@ -1,18 +1,19 @@
 package EntidadBancaria;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Persona {
   private String nombre;
   private String apellidos;
-  private GregorianCalendar fechaNacim;
+  private Date fechaNacim;
 
-  public Persona (String nombre, String apellidos, GregorianCalendar fechaNacim) {           
-    this.nombre= nombre;
-    this.apellidos= apellidos;
-    this.fechaNacim= (GregorianCalendar) fechaNacim.clone();
+  public Persona(String nombre, String apellidos, Date fechaNacim) {
+    this.nombre = nombre;
+    this.apellidos = apellidos;
+    this.fechaNacim = fechaNacim;
   }
+  
   public Persona(){
     
   }
@@ -25,7 +26,7 @@ public class Persona {
     return apellidos;
   }
 
-  protected GregorianCalendar getFechaNacim (){
+  protected Date getFechaNacim (){
     return this.fechaNacim;
   }
 
@@ -37,7 +38,7 @@ public class Persona {
     this.apellidos= apellidos;
   }
 
-  protected void setFechaNacim (GregorianCalendar fechaNacim){
+  protected void setFechaNacim (Date fechaNacim){
     this.fechaNacim= fechaNacim;
   }    
 }

@@ -1,14 +1,15 @@
 package EntidadBancaria;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 
 public class PanelNuevaCuenta extends javax.swing.JPanel {
   AplicacionCuentaBancaria padre; // objeto para acceder a la lista de cuentas
   String texto;
+  Comprobaciones comprobar;
   public PanelNuevaCuenta(AplicacionCuentaBancaria pad) {
     this.padre = pad;
+    this.comprobar = new Comprobaciones();
     initComponents();    
   }
 
@@ -29,8 +30,8 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     TiposdeCuenta = new javax.swing.JComboBox();
     jScrollPane1 = new javax.swing.JScrollPane();
     CajaTexto = new javax.swing.JTextArea();
-    txtCuenta = new javax.swing.JTextField();
     jLabel1 = new javax.swing.JLabel();
+    txtCuenta = new javax.swing.JFormattedTextField();
 
     botonGrabar.setText("Grabar");
     botonGrabar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,9 +80,18 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     CajaTexto.setRows(5);
     jScrollPane1.setViewportView(CajaTexto);
 
-    txtCuenta.setText("12345678901234567890");
-
     jLabel1.setText("Número de cuenta:");
+
+    try {
+      txtCuenta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### ## ##########")));
+    } catch (java.text.ParseException ex) {
+      ex.printStackTrace();
+    }
+    txtCuenta.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+      public void propertyChange(java.beans.PropertyChangeEvent evt) {
+        txtCuentaPropertyChange(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
@@ -118,7 +128,7 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel1)
-              .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
@@ -161,12 +171,8 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private void botonGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGrabarActionPerformed
     // Tratamiento de la fecha
     SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-    GregorianCalendar fechCal = new GregorianCalendar();
-    Date fechaDate;
-    fechCal.setGregorianChange(txtNacimiento.getDate());
     
-    
-    texto = txtNombre.getText()+" "+txtApellidos.getText()+" "+formatoFecha.format(fechCal)+" "+txtSaldo.getText();
+    texto = txtNombre.getText()+" "+txtApellidos.getText()+" "+formatoFecha.format(txtNacimiento.getDate())+" "+txtSaldo.getText();
     CajaTexto.setText(texto);
     //this.padre.listaCuentas.add(personita);
   }//GEN-LAST:event_botonGrabarActionPerformed
@@ -178,6 +184,13 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private void TiposdeCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiposdeCuentaActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_TiposdeCuentaActionPerformed
+
+  private void txtCuentaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtCuentaPropertyChange
+    CajaTexto.setText("He cambiado la cuenta");
+    if (comprobar.comprobarCuenta(txtCuenta.getText())==false){
+      txtCuenta.requestFocus();
+    }    
+  }//GEN-LAST:event_txtCuentaPropertyChange
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton BotonCancelar;
@@ -191,7 +204,7 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private javax.swing.JLabel jLabel4;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTextField txtApellidos;
-  private javax.swing.JTextField txtCuenta;
+  private javax.swing.JFormattedTextField txtCuenta;
   private com.toedter.calendar.JDateChooser txtNacimiento;
   private javax.swing.JTextField txtNombre;
   private javax.swing.JTextField txtSaldo;

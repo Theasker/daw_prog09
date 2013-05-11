@@ -15,7 +15,4 @@ public class CuentaAhorro extends CuentaBancaria{
   public void setInteresRemuneracion(Double interesRemuneracion) {
     this.interesRemuneracion = interesRemuneracion;
   }
-
-  
-  
 }

@@ -2,16 +2,19 @@ package EntidadBancaria;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import javax.swing.JPanel;
 
 public class AplicacionCuentaBancaria extends javax.swing.JFrame {
 
   
-  ArrayList listaDeObjetosPersona;
+  ArrayList listaCuentas;
   PanelNuevaCuenta crearCuenta;
+  JPanel panelPorDefecto;
   public AplicacionCuentaBancaria() {
     initComponents();
-    listaDeObjetosPersona = new ArrayList();
+    listaCuentas = new ArrayList();
     crearCuenta = new PanelNuevaCuenta(this);
+    panelPorDefecto = (JPanel) getContentPane(); // Panel principal
   }
 
   @SuppressWarnings("unchecked")
@@ -19,8 +22,9 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
   private void initComponents() {
 
     jLabel1 = new javax.swing.JLabel();
-    cajaTexto = new javax.swing.JTextField();
-    jButton1 = new javax.swing.JButton();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    CajaTexto = new javax.swing.JTextArea();
+    Boton = new javax.swing.JButton();
     menuBar = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openMenuItem = new javax.swing.JMenuItem();
@@ -39,12 +43,11 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     jLabel1.setToolTipText("");
     jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-    jButton1.setText("jButton1");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
-      }
-    });
+    CajaTexto.setColumns(20);
+    CajaTexto.setRows(5);
+    jScrollPane1.setViewportView(CajaTexto);
+
+    Boton.setText("Boton");
 
     fileMenu.setMnemonic('f');
     fileMenu.setText("Cuenta");
@@ -108,23 +111,23 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane1)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jButton1)
-            .addGap(31, 31, 31)
+            .addComponent(Boton)
+            .addGap(73, 73, 73)
             .addComponent(jLabel1)
-            .addGap(0, 160, Short.MAX_VALUE))
-          .addComponent(cajaTexto, javax.swing.GroupLayout.Alignment.TRAILING))
+            .addGap(0, 136, Short.MAX_VALUE)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(153, 153, 153)
+        .addContainerGap(156, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel1)
-          .addComponent(jButton1))
-        .addGap(18, 18, 18)
-        .addComponent(cajaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(Boton, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
 
@@ -140,19 +143,6 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     setContentPane(crearCuenta);
     pack();
   }//GEN-LAST:event_openMenuItemActionPerformed
-
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String texto = null;
-    ListIterator iterador;
-    iterador = listaDeObjetosPersona.listIterator();
-    while(iterador.hasNext()){
-      Persona persona = (Persona) iterador.next();
-      texto = persona.getNombre()+" "+persona.getApellidos()+" "+persona.getFechaNacim();
-    }
-    cajaTexto.setText(texto);
-    
-    
-  }//GEN-LAST:event_jButton1ActionPerformed
 
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -186,15 +176,16 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     });
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JTextField cajaTexto;
+  private javax.swing.JButton Boton;
+  private javax.swing.JTextArea CajaTexto;
   private javax.swing.JMenuItem copyMenuItem;
   private javax.swing.JMenuItem cutMenuItem;
   private javax.swing.JMenu editMenu;
   private javax.swing.JMenuItem exitMenuItem;
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
-  private javax.swing.JButton jButton1;
   private javax.swing.JLabel jLabel1;
+  private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JMenuBar menuBar;
   private javax.swing.JMenuItem openMenuItem;
   private javax.swing.JMenuItem pasteMenuItem;

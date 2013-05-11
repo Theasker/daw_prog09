@@ -5,18 +5,18 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class PanelNuevaCuenta extends javax.swing.JPanel {
-  AplicacionCuentaBancaria padre;
+  AplicacionCuentaBancaria padre; // objeto para acceder a la lista de cuentas
+  String texto;
   public PanelNuevaCuenta(AplicacionCuentaBancaria pad) {
     this.padre = pad;
-    initComponents();
-    
+    initComponents();    
   }
 
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    BotonAceptar = new javax.swing.JButton();
+    botonGrabar = new javax.swing.JButton();
     BotonCancelar = new javax.swing.JButton();
     jLabel2 = new javax.swing.JLabel();
     txtNombre = new javax.swing.JTextField();
@@ -26,15 +26,20 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     txtSaldo = new javax.swing.JTextField();
     jLabel4 = new javax.swing.JLabel();
     txtNacimiento = new com.toedter.calendar.JDateChooser();
+    TiposdeCuenta = new javax.swing.JComboBox();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    CajaTexto = new javax.swing.JTextArea();
+    txtCuenta = new javax.swing.JTextField();
+    jLabel1 = new javax.swing.JLabel();
 
-    BotonAceptar.setText("Aceptar");
-    BotonAceptar.addActionListener(new java.awt.event.ActionListener() {
+    botonGrabar.setText("Grabar");
+    botonGrabar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        BotonAceptarActionPerformed(evt);
+        botonGrabarActionPerformed(evt);
       }
     });
 
-    BotonCancelar.setText("Cancelar");
+    BotonCancelar.setText("Volver");
     BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         BotonCancelarActionPerformed(evt);
@@ -63,6 +68,21 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     txtNacimiento.setDateFormatString("dd-MM-yyyy");
 
+    TiposdeCuenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cuenta Corriente", "Cuenta Corriente Personal", "Cuenta Corriente de Empresa" }));
+    TiposdeCuenta.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        TiposdeCuentaActionPerformed(evt);
+      }
+    });
+
+    CajaTexto.setColumns(20);
+    CajaTexto.setRows(5);
+    jScrollPane1.setViewportView(CajaTexto);
+
+    txtCuenta.setText("12345678901234567890");
+
+    jLabel1.setText("Número de cuenta:");
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
@@ -70,18 +90,21 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(BotonCancelar)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BotonAceptar))
+          .addComponent(jScrollPane1)
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel2))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(jLabel3)))
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+              .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(BotonCancelar)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonGrabar))
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -90,7 +113,13 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(txtNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(TiposdeCuenta, 0, 211, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel1)
+              .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -105,45 +134,64 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel4)
-          .addComponent(jLabel10))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel4)
+              .addComponent(jLabel10))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+              .addComponent(txtSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(txtNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+          .addComponent(TiposdeCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jLabel1)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(BotonAceptar)
+          .addComponent(botonGrabar)
           .addComponent(BotonCancelar))
         .addContainerGap())
     );
   }// </editor-fold>//GEN-END:initComponents
 
-  private void BotonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAceptarActionPerformed
+  private void botonGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGrabarActionPerformed
+    // Tratamiento de la fecha
     SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-    GregorianCalendar fechCal=new GregorianCalendar();
+    GregorianCalendar fechCal = new GregorianCalendar();
     Date fechaDate;
     fechCal.setGregorianChange(txtNacimiento.getDate());
-    Persona personita = new Persona(txtNombre.getText(),txtApellidos.getText(),fechCal);
-    this.padre.listaDeObjetosPersona.add(personita);
-    this.setVisible(false);
     
-  }//GEN-LAST:event_BotonAceptarActionPerformed
+    
+    texto = txtNombre.getText()+" "+txtApellidos.getText()+" "+formatoFecha.format(fechCal)+" "+txtSaldo.getText();
+    CajaTexto.setText(texto);
+    //this.padre.listaCuentas.add(personita);
+  }//GEN-LAST:event_botonGrabarActionPerformed
 
   private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
-    this.setVisible(false);
-    
+    padre.setContentPane(padre.panelPorDefecto);
   }//GEN-LAST:event_BotonCancelarActionPerformed
 
+  private void TiposdeCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiposdeCuentaActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_TiposdeCuentaActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton BotonAceptar;
   private javax.swing.JButton BotonCancelar;
+  private javax.swing.JTextArea CajaTexto;
+  private javax.swing.JComboBox TiposdeCuenta;
+  private javax.swing.JButton botonGrabar;
+  private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel10;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
+  private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTextField txtApellidos;
+  private javax.swing.JTextField txtCuenta;
   private com.toedter.calendar.JDateChooser txtNacimiento;
   private javax.swing.JTextField txtNombre;
   private javax.swing.JTextField txtSaldo;

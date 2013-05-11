@@ -1,14 +1,21 @@
 package EntidadBancaria;
 
-public class CuentaBancaria{
+public abstract class CuentaBancaria{
   protected Persona titular;
   protected Double saldo;
-  protected String CCC;
+  protected String ccc;
 
-  public CuentaBancaria(Persona p, Double s, String c){
-    this.titular = p;
-    this.saldo = s;
-    this.CCC = c;
+  public CuentaBancaria(Persona persona, Double saldo, String ccc){
+    this.titular = persona;
+    this.saldo = saldo;
+    this.ccc = ccc;
+  }
+  
+  public void ingresar(Double cantidad){
+    saldo = saldo + cantidad;
+  }
+  public void retirar(Double cantidad) throws Exception{
+    saldo = saldo - cantidad; 
   }
   
   public Persona getTitular() {
@@ -27,13 +34,11 @@ public class CuentaBancaria{
     this.saldo = saldo;
   }
 
-  public String getCCC() {
-    return CCC;
+  public String getccc() {
+    return ccc;
   }
 
-  public void setCCC(String CCC) {
-    this.CCC = CCC;
+  public void setccc(String ccc) {
+    this.ccc = ccc;
   }
-  
-  
 }

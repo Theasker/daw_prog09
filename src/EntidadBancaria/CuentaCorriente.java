@@ -3,18 +3,18 @@ package EntidadBancaria;
 import java.util.Hashtable;
 
 public abstract class CuentaCorriente extends CuentaBancaria{
-  protected Hashtable <String,String> listaEntidesAutorizadas;
+  protected Hashtable <String,Double> listaEntidesAutorizadas;
 
-  public CuentaCorriente(Hashtable<String, String> listaEntidesAutorizadas, Persona persona, Double saldo, String ccc) {
+  public CuentaCorriente(Hashtable<String, Double> listaEntidesAutorizadas, Persona persona, Double saldo, String ccc) {
     super(persona, saldo, ccc);
     this.listaEntidesAutorizadas = listaEntidesAutorizadas;
   }
 
-  public Hashtable<String, String> getListaEntidesAutorizadas() {
+  public Hashtable<String, Double> getListaEntidesAutorizadas() {
     return listaEntidesAutorizadas;
   }
 
-  public void setListaEntidesAutorizadas(Hashtable<String, String> listaEntidesAutorizadas) {
+  public void setListaEntidesAutorizadas(Hashtable<String, Double> listaEntidesAutorizadas) {
     this.listaEntidesAutorizadas = listaEntidesAutorizadas;
   }
 

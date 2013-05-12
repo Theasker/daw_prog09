@@ -116,7 +116,7 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
             .addComponent(Boton)
             .addGap(73, 73, 73)
             .addComponent(jLabel1)
-            .addGap(0, 136, Short.MAX_VALUE)))
+            .addGap(0, 140, Short.MAX_VALUE)))
         .addContainerGap())
     );
     layout.setVerticalGroup(

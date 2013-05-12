@@ -28,6 +28,7 @@ public class Comprobaciones {
       try{
          Integer.parseInt(cadena.substring(x, x+1));
       }catch(NumberFormatException e){ //Se ejecuta cuando no es un nº entero
+        
         System.out.println(cadena.substring(x, x+1)+" no es un entero");
         return false;
       } 

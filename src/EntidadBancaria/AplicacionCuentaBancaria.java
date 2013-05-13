@@ -8,12 +8,14 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
 
   
   ArrayList listaCuentas;
-  PanelNuevaCuenta crearCuenta;
+  PanelNuevaCuenta panelCrearCuenta;
+  PanelEntidades panelEntidades;
   JPanel panelPorDefecto;
   public AplicacionCuentaBancaria() {
     initComponents();
     listaCuentas = new ArrayList();
-    crearCuenta = new PanelNuevaCuenta(this);
+    panelCrearCuenta = new PanelNuevaCuenta(this);
+    panelEntidades = new PanelEntidades(this);
     panelPorDefecto = (JPanel) getContentPane(); // Panel principal
   }
 
@@ -139,8 +141,7 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
   private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-    
-    setContentPane(crearCuenta);
+    setContentPane(panelCrearCuenta);
     pack();
   }//GEN-LAST:event_openMenuItemActionPerformed
 

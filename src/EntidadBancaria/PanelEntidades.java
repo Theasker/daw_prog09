@@ -1,17 +1,18 @@
 package EntidadBancaria;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class PanelEntidades extends javax.swing.JPanel {
 
+  Comprobaciones comprobar;
   AplicacionCuentaBancaria padre;
-  Hashtable lista ;
+  Hashtable hashLista;
   public PanelEntidades(AplicacionCuentaBancaria pad) {
     padre = pad;
     initComponents();
-    lista = new Hashtable();    
+    hashLista = new Hashtable();  
+    comprobar = new Comprobaciones();
   }
 
   /**
@@ -27,9 +28,9 @@ public class PanelEntidades extends javax.swing.JPanel {
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     txtEntidad = new javax.swing.JTextField();
-    txtCantidad = new javax.swing.JFormattedTextField();
     btnAdd = new javax.swing.JButton();
     btnVolver = new javax.swing.JButton();
+    txtCantidad = new javax.swing.JTextField();
 
     jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
     jLabel1.setText("Añadir entidades autorizadas");
@@ -39,8 +40,6 @@ public class PanelEntidades extends javax.swing.JPanel {
     jLabel3.setText("Cantidad máxima autorizada: ");
 
     txtEntidad.setText("BBVA");
-
-    txtCantidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####.##"))));
 
     btnAdd.setText("Añadir");
     btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +54,8 @@ public class PanelEntidades extends javax.swing.JPanel {
         btnVolverActionPerformed(evt);
       }
     });
+
+    txtCantidad.setText("500.31");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
@@ -72,8 +73,8 @@ public class PanelEntidades extends javax.swing.JPanel {
               .addComponent(jLabel1)
               .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(txtCantidad)))
             .addGap(0, 0, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addComponent(btnVolver)
@@ -91,7 +92,7 @@ public class PanelEntidades extends javax.swing.JPanel {
           .addComponent(jLabel2)
           .addComponent(txtEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(18, 18, 18)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(jLabel3)
           .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -109,11 +110,17 @@ public class PanelEntidades extends javax.swing.JPanel {
 
   private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
     Double num;
-    num = Double.parseDouble(txtCantidad.getText());
-    if (num < 0){
-      JOptionPane.showMessageDialog(this,"No se admiten cifras negativas","ERROR",JOptionPane.ERROR_MESSAGE);
-    }
-    
+    try{
+      num = Double.parseDouble(txtCantidad.getText());
+      if (num < 0){
+        JOptionPane.showMessageDialog(this,"No se admiten cifras negativas","ERROR",JOptionPane.ERROR_MESSAGE);
+      }else{
+        hashLista.put(txtEntidad, num);
+        padre.hashLista = hashLista;
+      }
+    }catch (NumberFormatException nfe){
+      JOptionPane.showMessageDialog(this,"Sólo se admiten números","ERROR",JOptionPane.ERROR_MESSAGE);
+    }   
   }//GEN-LAST:event_btnAddActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -122,7 +129,7 @@ public class PanelEntidades extends javax.swing.JPanel {
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
-  private javax.swing.JFormattedTextField txtCantidad;
+  private javax.swing.JTextField txtCantidad;
   private javax.swing.JTextField txtEntidad;
   // End of variables declaration//GEN-END:variables
 }

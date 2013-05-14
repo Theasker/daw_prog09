@@ -1,6 +1,7 @@
 package EntidadBancaria;
 
 public class Comprobaciones {
+  
   public boolean comprobarCuenta(String cuenta){
     boolean comprueba = false;
     System.out.println("Validando la cuenta");

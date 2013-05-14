@@ -1,5 +1,6 @@
 package EntidadBancaria;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JPanel;
@@ -11,9 +12,11 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
   PanelNuevaCuenta panelCrearCuenta;
   PanelEntidades panelEntidades;
   JPanel panelPorDefecto;
+  Hashtable hashLista;
   public AplicacionCuentaBancaria() {
     initComponents();
     listaCuentas = new ArrayList();
+    hashLista = new Hashtable();
     panelCrearCuenta = new PanelNuevaCuenta(this);
     panelEntidades = new PanelEntidades(this);
     panelPorDefecto = (JPanel) getContentPane(); // Panel principal

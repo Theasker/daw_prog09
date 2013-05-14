@@ -11,12 +11,20 @@ public abstract class CuentaBancaria{
     this.ccc = ccc;
   }
   
-  public void ingresar(Double cantidad){
-    saldo = saldo + cantidad;
-  }
-  public void retirar(Double cantidad) throws Exception{
-    saldo = saldo - cantidad; 
-  }
+  public void realizarIngreso(String cantidad) {
+        double valor = 0;
+        valor = Double.parseDouble(cantidad);
+        saldo += valor;
+    }
+
+    public boolean retirarEfectivo(String cantidad){
+        double valor = 0;
+        valor = Double.parseDouble(cantidad);
+        if (valor <= saldo) {
+          saldo -= valor;
+          return true;
+        }else return false;
+    }
   
   public Persona getTitular() {
     return titular;

@@ -15,4 +15,11 @@ public class CuentaAhorro extends CuentaBancaria{
   public void setInteresRemuneracion(Double interesRemuneracion) {
     this.interesRemuneracion = interesRemuneracion;
   }
+  
+  @Override
+  public String toString(){
+    String texto;
+    texto = titular.toString()+" "+ccc+"("+saldo+")"+"Interés: "+interesRemuneracion;
+    return texto;
+  }
 }

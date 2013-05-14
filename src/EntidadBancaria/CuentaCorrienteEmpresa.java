@@ -29,5 +29,12 @@ public class CuentaCorrienteEmpresa extends CuentaBancaria {
   }
   public void setComisionDescubierto(Double comisionDescubierto) {
     this.comisionDescubierto = comisionDescubierto;
-  }  
+  }
+  @Override
+  public String toString(){
+    String texto;
+    texto = titular.toString()+" "+ccc+"("+saldo+")"+", Descubierto max.: "+descubiertoMax+
+            ", int.descubierto: "+interesDescubierto+", comisión desc: "+comisionDescubierto;
+    return texto;
+  }
 }

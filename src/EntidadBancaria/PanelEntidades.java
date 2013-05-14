@@ -1,6 +1,6 @@
 package EntidadBancaria;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+import java.util.Hashtable;
 import javax.swing.JOptionPane;
 
 public class PanelEntidades extends javax.swing.JPanel {

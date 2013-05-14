@@ -1,35 +1,70 @@
 package EntidadBancaria;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+//import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+import java.util.Hashtable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.ListIterator;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 public class AplicacionCuentaBancaria extends javax.swing.JFrame {
 
   
-  ArrayList listaCuentas;
+  ArrayList <CuentaBancaria> listaCuentas;
   PanelNuevaCuenta panelCrearCuenta;
   PanelEntidades panelEntidades;
   JPanel panelPorDefecto;
-  Hashtable hashLista;
+  Hashtable <String, Double> hashLista;
   public AplicacionCuentaBancaria() {
     initComponents();
-    listaCuentas = new ArrayList();
-    hashLista = new Hashtable();
+    listaCuentas = new ArrayList<>();
+    hashLista = new Hashtable<>();
     panelCrearCuenta = new PanelNuevaCuenta(this);
     panelEntidades = new PanelEntidades(this);
     panelPorDefecto = (JPanel) getContentPane(); // Panel principal
   }
 
+  private void cargarDatosPrueba() {
+    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+    Date fecha=null;
+    try {
+      fecha = formatoFecha.parse("19-10-1972");
+      System.out.println(fecha);
+    } catch (ParseException ex) {
+      Logger.getLogger(AplicacionCuentaBancaria.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    // Cargo el Hashtable con datos
+    Hashtable <String, Double> hashtableTemporal = new Hashtable<>();
+    hashtableTemporal.put("BBVA", 105.31);
+    hashtableTemporal.put("Ibercaja", 105.31);
+    hashtableTemporal.put("CAI", 105.31);
+    listaCuentas.add(new CuentaAhorro(7.3, (new Persona("Mauri","Segura Sánchez",fecha)), 1000.11,"39705410312020676809" ));
+    listaCuentas.add(new CuentaAhorro(7.3, (new Persona("Rubén","Segura Sánchez",fecha)), 1001.11,"49789718110029800325" ));
+    listaCuentas.add(new CuentaAhorro(7.3, (new Persona("Inés","Segura Sánchez",fecha)), 1002.11,"45513574040596226753" ));
+    listaCuentas.add(new CuentaCorrienteEmpresa
+            (1000.20, 15.50, 20.40, (new Persona("Mauri","CuentaCorrienteEmpresa",fecha)), 1003.11, "05242356790934628392"));
+    listaCuentas.add(new CuentaCorrienteEmpresa
+            (1000.20, 15.50, 20.40, (new Persona("Rubén","CuentaCorrienteEmpresa",fecha)), 1004.11, "11175141812021992903"));
+    listaCuentas.add(new CuentaCorrienteEmpresa
+            (1000.20, 15.50, 20.40, (new Persona("Inés","CuentaCorrienteEmpresa",fecha)), 1005.11, "60700812282804797966"));
+    listaCuentas.add(new CuentaCorrientePersonal
+            (15.13, hashtableTemporal, (new Persona("Mauri","CCPersonal",fecha)), 1005.27, "01769247196617238484"));
+    listaCuentas.add(new CuentaCorrientePersonal
+            (15.13, hashtableTemporal, (new Persona("Rubén","CCPersonal",fecha)), 1005.27, "01769247196617238484"));
+    listaCuentas.add(new CuentaCorrientePersonal
+            (15.13, hashtableTemporal, (new Persona("Inés","CCPersonal",fecha)), 1005.27, "01769247196617238484"));
+    jLabel1.setText("Se han cargado los datos de prueba");
+  }
+  
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
     jLabel1 = new javax.swing.JLabel();
-    jScrollPane1 = new javax.swing.JScrollPane();
-    CajaTexto = new javax.swing.JTextArea();
-    Boton = new javax.swing.JButton();
+    btnDatosPrueba = new javax.swing.JButton();
     menuBar = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
     openMenuItem = new javax.swing.JMenuItem();
@@ -48,11 +83,12 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     jLabel1.setToolTipText("");
     jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-    CajaTexto.setColumns(20);
-    CajaTexto.setRows(5);
-    jScrollPane1.setViewportView(CajaTexto);
-
-    Boton.setText("Boton");
+    btnDatosPrueba.setText("Cargar datos de prueba");
+    btnDatosPrueba.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDatosPruebaActionPerformed(evt);
+      }
+    });
 
     fileMenu.setMnemonic('f');
     fileMenu.setText("Cuenta");
@@ -114,26 +150,22 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(161, 161, 161)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jScrollPane1)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(Boton)
-            .addGap(73, 73, 73)
-            .addComponent(jLabel1)
-            .addGap(0, 140, Short.MAX_VALUE)))
-        .addContainerGap())
+            .addGap(12, 12, 12)
+            .addComponent(btnDatosPrueba))
+          .addComponent(jLabel1))
+        .addContainerGap(152, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(156, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(Boton, javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+        .addContainerGap(166, Short.MAX_VALUE)
+        .addComponent(jLabel1)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap())
+        .addComponent(btnDatosPrueba)
+        .addGap(184, 184, 184))
     );
 
     pack();
@@ -147,6 +179,10 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     setContentPane(panelCrearCuenta);
     pack();
   }//GEN-LAST:event_openMenuItemActionPerformed
+
+  private void btnDatosPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosPruebaActionPerformed
+    cargarDatosPrueba();
+  }//GEN-LAST:event_btnDatosPruebaActionPerformed
 
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -180,8 +216,7 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     });
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton Boton;
-  private javax.swing.JTextArea CajaTexto;
+  private javax.swing.JButton btnDatosPrueba;
   private javax.swing.JMenuItem copyMenuItem;
   private javax.swing.JMenuItem cutMenuItem;
   private javax.swing.JMenu editMenu;
@@ -189,7 +224,6 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JMenuBar menuBar;
   private javax.swing.JMenuItem openMenuItem;
   private javax.swing.JMenuItem pasteMenuItem;

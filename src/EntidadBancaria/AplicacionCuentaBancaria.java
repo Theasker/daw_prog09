@@ -16,6 +16,7 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
   ArrayList <CuentaBancaria> listaCuentas;
   PanelNuevaCuenta panelCrearCuenta;
   PanelEntidades panelEntidades;
+  PanelListadoCuentas panelListado;
   JPanel panelPorDefecto;
   Hashtable <String, Double> hashLista;
   public AplicacionCuentaBancaria() {
@@ -24,6 +25,7 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     hashLista = new Hashtable<>();
     panelCrearCuenta = new PanelNuevaCuenta(this);
     panelEntidades = new PanelEntidades(this);
+    panelListado = new PanelListadoCuentas(this);
     panelPorDefecto = (JPanel) getContentPane(); // Panel principal
   }
 
@@ -67,15 +69,15 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     btnDatosPrueba = new javax.swing.JButton();
     menuBar = new javax.swing.JMenuBar();
     fileMenu = new javax.swing.JMenu();
-    openMenuItem = new javax.swing.JMenuItem();
-    exitMenuItem = new javax.swing.JMenuItem();
+    menuNuevaCuenta = new javax.swing.JMenuItem();
+    menuExit = new javax.swing.JMenuItem();
     editMenu = new javax.swing.JMenu();
-    cutMenuItem = new javax.swing.JMenuItem();
-    copyMenuItem = new javax.swing.JMenuItem();
-    pasteMenuItem = new javax.swing.JMenuItem();
+    menuIngreso = new javax.swing.JMenuItem();
+    menuRetirada = new javax.swing.JMenuItem();
+    menuConsultaSaldo = new javax.swing.JMenuItem();
     helpMenu = new javax.swing.JMenu();
-    saveMenuItem = new javax.swing.JMenuItem();
-    saveAsMenuItem = new javax.swing.JMenuItem();
+    menuListadoCuentas = new javax.swing.JMenuItem();
+    menuDatosCuenta = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,53 +95,58 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     fileMenu.setMnemonic('f');
     fileMenu.setText("Cuenta");
 
-    openMenuItem.setMnemonic('o');
-    openMenuItem.setText("Abrir una nueva cuenta");
-    openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+    menuNuevaCuenta.setMnemonic('o');
+    menuNuevaCuenta.setText("Abrir una nueva cuenta");
+    menuNuevaCuenta.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        openMenuItemActionPerformed(evt);
+        menuNuevaCuentaActionPerformed(evt);
       }
     });
-    fileMenu.add(openMenuItem);
+    fileMenu.add(menuNuevaCuenta);
 
-    exitMenuItem.setMnemonic('x');
-    exitMenuItem.setText("Exit");
-    exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+    menuExit.setMnemonic('x');
+    menuExit.setText("Exit");
+    menuExit.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        exitMenuItemActionPerformed(evt);
+        menuExitActionPerformed(evt);
       }
     });
-    fileMenu.add(exitMenuItem);
+    fileMenu.add(menuExit);
 
     menuBar.add(fileMenu);
 
     editMenu.setMnemonic('e');
     editMenu.setText("Movimientos");
 
-    cutMenuItem.setMnemonic('t');
-    cutMenuItem.setText("Realizar ingreso");
-    editMenu.add(cutMenuItem);
+    menuIngreso.setMnemonic('t');
+    menuIngreso.setText("Realizar ingreso");
+    editMenu.add(menuIngreso);
 
-    copyMenuItem.setMnemonic('y');
-    copyMenuItem.setText("Retirada de efectivo");
-    editMenu.add(copyMenuItem);
+    menuRetirada.setMnemonic('y');
+    menuRetirada.setText("Retirada de efectivo");
+    editMenu.add(menuRetirada);
 
-    pasteMenuItem.setMnemonic('p');
-    pasteMenuItem.setText("Consulta de saldo");
-    editMenu.add(pasteMenuItem);
+    menuConsultaSaldo.setMnemonic('p');
+    menuConsultaSaldo.setText("Consulta de saldo");
+    editMenu.add(menuConsultaSaldo);
 
     menuBar.add(editMenu);
 
     helpMenu.setMnemonic('h');
     helpMenu.setText("Ver");
 
-    saveMenuItem.setMnemonic('s');
-    saveMenuItem.setText("Ver listado de cuentas");
-    helpMenu.add(saveMenuItem);
+    menuListadoCuentas.setMnemonic('s');
+    menuListadoCuentas.setText("Ver listado de cuentas");
+    menuListadoCuentas.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuListadoCuentasActionPerformed(evt);
+      }
+    });
+    helpMenu.add(menuListadoCuentas);
 
-    saveAsMenuItem.setMnemonic('a');
-    saveAsMenuItem.setText("Ver datos de una cuenta");
-    helpMenu.add(saveAsMenuItem);
+    menuDatosCuenta.setMnemonic('a');
+    menuDatosCuenta.setText("Ver datos de una cuenta");
+    helpMenu.add(menuDatosCuenta);
 
     menuBar.add(helpMenu);
 
@@ -171,18 +178,23 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
       System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    }//GEN-LAST:event_menuExitActionPerformed
 
-  private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
+  private void menuNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaCuentaActionPerformed
     setContentPane(panelCrearCuenta);
     pack();
-  }//GEN-LAST:event_openMenuItemActionPerformed
+  }//GEN-LAST:event_menuNuevaCuentaActionPerformed
 
   private void btnDatosPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosPruebaActionPerformed
     cargarDatosPrueba();
   }//GEN-LAST:event_btnDatosPruebaActionPerformed
+
+  private void menuListadoCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListadoCuentasActionPerformed
+    setContentPane(panelListado);
+    pack();
+  }//GEN-LAST:event_menuListadoCuentasActionPerformed
 
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -207,7 +219,6 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
       java.util.logging.Logger.getLogger(AplicacionCuentaBancaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     //</editor-fold>
-    ArrayList listaDeObjetosCuenta = new ArrayList();
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
@@ -217,17 +228,17 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
   }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnDatosPrueba;
-  private javax.swing.JMenuItem copyMenuItem;
-  private javax.swing.JMenuItem cutMenuItem;
   private javax.swing.JMenu editMenu;
-  private javax.swing.JMenuItem exitMenuItem;
   private javax.swing.JMenu fileMenu;
   private javax.swing.JMenu helpMenu;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JMenuBar menuBar;
-  private javax.swing.JMenuItem openMenuItem;
-  private javax.swing.JMenuItem pasteMenuItem;
-  private javax.swing.JMenuItem saveAsMenuItem;
-  private javax.swing.JMenuItem saveMenuItem;
+  private javax.swing.JMenuItem menuConsultaSaldo;
+  private javax.swing.JMenuItem menuDatosCuenta;
+  private javax.swing.JMenuItem menuExit;
+  private javax.swing.JMenuItem menuIngreso;
+  private javax.swing.JMenuItem menuListadoCuentas;
+  private javax.swing.JMenuItem menuNuevaCuenta;
+  private javax.swing.JMenuItem menuRetirada;
   // End of variables declaration//GEN-END:variables
 }

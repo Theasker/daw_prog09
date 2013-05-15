@@ -21,7 +21,7 @@ public class PanelListadoCuentas extends javax.swing.JPanel {
       while(iterador.hasNext()){
         cont++;
         CuentaBancaria cuenta = (CuentaBancaria) iterador.next();
-        nuevaLinea(cont+".-"+cuenta.titular.toString());
+        nuevaLinea(cont+".-"+cuenta.toString());
       }
       padre.pack();
     }catch(Exception e){

@@ -4,8 +4,7 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 public class PanelNuevaCuenta extends javax.swing.JPanel {
@@ -70,16 +69,17 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     txtNacimiento = new com.toedter.calendar.JDateChooser();
     jLabel1 = new javax.swing.JLabel();
     jLabel10 = new javax.swing.JLabel();
-    PanelInteres = new javax.swing.JPanel();
-    jLabel5 = new javax.swing.JLabel();
-    txtInteres = new javax.swing.JTextField();
     txtSaldo = new javax.swing.JTextField();
     txtCuenta = new javax.swing.JTextField();
     jPanel2 = new javax.swing.JPanel();
     EtiquetaErrores = new javax.swing.JLabel();
     BotonCancelar = new javax.swing.JButton();
     botonGrabar = new javax.swing.JButton();
+    btnBorrarDatos = new javax.swing.JButton();
     cmbTiposdeCuenta = new javax.swing.JComboBox();
+    PanelInteres = new javax.swing.JPanel();
+    jLabel5 = new javax.swing.JLabel();
+    txtInteres = new javax.swing.JTextField();
 
     PanelCuentaCorrientePersonal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -127,7 +127,7 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     txtInteresDescubierto.setText("19.11");
 
-    txtComisionDescubierto.setText("14,24");
+    txtComisionDescubierto.setText("14.24");
 
     javax.swing.GroupLayout PanelCuentaCorrienteEmpresaLayout = new javax.swing.GroupLayout(PanelCuentaCorrienteEmpresa);
     PanelCuentaCorrienteEmpresa.setLayout(PanelCuentaCorrienteEmpresaLayout);
@@ -186,31 +186,6 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     jLabel10.setText("Saldo:");
 
-    jLabel5.setText("Tipo de interés:");
-
-    txtInteres.setText("7.31");
-
-    javax.swing.GroupLayout PanelInteresLayout = new javax.swing.GroupLayout(PanelInteres);
-    PanelInteres.setLayout(PanelInteresLayout);
-    PanelInteresLayout.setHorizontalGroup(
-      PanelInteresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(PanelInteresLayout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(jLabel5)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(txtInteres, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-        .addContainerGap())
-    );
-    PanelInteresLayout.setVerticalGroup(
-      PanelInteresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(PanelInteresLayout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(PanelInteresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel5)
-          .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(14, Short.MAX_VALUE))
-    );
-
     txtSaldo.setText("1053.21");
     txtSaldo.setToolTipText("");
 
@@ -223,29 +198,30 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
       .addGroup(PanelComunLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel2)
-          .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(5, 5, 5)
-        .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(PanelComunLayout.createSequentialGroup()
             .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel2)
+              .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(5, 5, 5)
+            .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addGroup(PanelComunLayout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(0, 225, Short.MAX_VALUE)))
+            .addContainerGap())
+          .addGroup(PanelComunLayout.createSequentialGroup()
+            .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel1)
-              .addComponent(jLabel3)
               .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 78, Short.MAX_VALUE)))
-        .addContainerGap())
-      .addGroup(PanelComunLayout.createSequentialGroup()
-        .addGap(129, 129, 129)
-        .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel10)
-          .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addComponent(PanelInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel10)
+              .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(56, 56, 56))))
     );
     PanelComunLayout.setVerticalGroup(
       PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,14 +247,12 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel1)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGap(11, 11, 11)
-        .addGroup(PanelComunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(PanelInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(PanelComunLayout.createSequentialGroup()
             .addComponent(jLabel10)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(56, 56, 56))
     );
 
     EtiquetaErrores.setForeground(new java.awt.Color(204, 51, 0));
@@ -299,6 +273,13 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
       }
     });
 
+    btnBorrarDatos.setText("Borrar datos");
+    btnBorrarDatos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnBorrarDatosActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -312,6 +293,8 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           .addGroup(jPanel2Layout.createSequentialGroup()
             .addComponent(BotonCancelar)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBorrarDatos)
+            .addGap(135, 135, 135)
             .addComponent(botonGrabar)))
         .addGap(9, 9, 9))
     );
@@ -322,7 +305,9 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
         .addComponent(EtiquetaErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(botonGrabar)
+          .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(botonGrabar)
+            .addComponent(btnBorrarDatos))
           .addComponent(BotonCancelar))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -334,27 +319,37 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
       }
     });
 
+    PanelInteres.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+    jLabel5.setText("Tipo de interés:");
+
+    txtInteres.setText("7.31");
+
+    javax.swing.GroupLayout PanelInteresLayout = new javax.swing.GroupLayout(PanelInteres);
+    PanelInteres.setLayout(PanelInteresLayout);
+    PanelInteresLayout.setHorizontalGroup(
+      PanelInteresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(PanelInteresLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jLabel5)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(txtInteres, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    PanelInteresLayout.setVerticalGroup(
+      PanelInteresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(PanelInteresLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(PanelInteresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel5)
+          .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(14, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(PanelComun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 0, Short.MAX_VALUE))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(PanelCuentaCorrienteEmpresa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGap(27, 27, 27)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(PanelCuentaCorrientePersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(btnEntidades)))
-            .addGap(24, 24, 24)))
-        .addGap(126, 126, 126))
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
@@ -363,7 +358,30 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           .addGroup(layout.createSequentialGroup()
             .addGap(100, 100, 100)
             .addComponent(cmbTiposdeCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
+      .addGroup(layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(PanelComun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(PanelCuentaCorrienteEmpresa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(PanelCuentaCorrientePersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                      .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnEntidades)))
+                    .addGap(24, 24, 24)))
+                .addGap(126, 126, 126))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(PanelInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(177, 177, 177))))))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,10 +389,12 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addComponent(cmbTiposdeCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(PanelComun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(PanelCuentaCorrientePersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(PanelComun, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(4, 4, 4)
+        .addComponent(PanelInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(PanelCuentaCorrientePersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(7, 7, 7)
         .addComponent(btnEntidades)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(PanelCuentaCorrienteEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,10 +419,21 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           EtiquetaErrores.setText("Se ha agregado una Cuenta de Ahorro");          
           break;
         case "Cuenta Corriente Personal":
-          
+          padre.listaCuentas.add(new CuentaCorrientePersonal(
+                  Double.parseDouble(txtComMantenimiento.getText()), 
+                  padre.hashLista, 
+                  (new Persona(txtNombre.getText(), txtApellidos.getText(), txtNacimiento.getDate())), 
+                  Double.parseDouble(txtSaldo.getText()), txtCuenta.getText()));
+          EtiquetaErrores.setText("Se ha agregado una Cuenta Corriente Personal");          
           break;
         case "Cuenta Corriente de Empresa":
-          
+          padre.listaCuentas.add(new CuentaCorrienteEmpresa(
+                  Double.parseDouble(txtDescubiertoMaximo.getText()), 
+                  Double.parseDouble(txtInteresDescubierto.getText()), 
+                  Double.parseDouble(txtComisionDescubierto.getText()), 
+                  (new Persona(txtNombre.getText(), txtApellidos.getText(), txtNacimiento.getDate())), 
+                  Double.parseDouble(txtSaldo.getText()), txtCuenta.getText()));
+          EtiquetaErrores.setText("Se ha agregado una Cuenta Corriente de Empresa");          
           break;
       }
     }else{
@@ -432,11 +463,15 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     //Comprobamos la fecha de nacimiento
     // Supongo que la fecha es introducida correctamente con el JCalendar
     
-    //Comprobamos la cuenta corriente
+    //Comprobamos si la cuenta corriente es correcta
     if (comprobar.comprobarCuenta(txtCuenta.getText())==false){
-      nuevoError("Error en el número de cuenta"+txtCuenta.getText());
+      nuevoError("Error en el número de cuenta "+txtCuenta.getText());
       comprobado = false;
     }
+    // compruebo que el nº de cta. no está duplicado
+      if (comprobarDuplicidadCuenta()==false){
+        comprobado = false;
+      }
     
     switch(cmbTiposdeCuenta.getSelectedItem().toString()){
       case "Cuenta de Ahorro":
@@ -469,6 +504,24 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     return comprobado;
   }
   
+  private boolean comprobarDuplicidadCuenta() {
+    boolean duplicado = true;
+    try{
+      ListIterator iterador;
+      iterador = padre.listaCuentas.listIterator();
+      while(iterador.hasNext()){
+        CuentaBancaria cuenta = (CuentaBancaria) iterador.next();
+        if (cuenta.ccc.equals(txtCuenta.getText())){
+          nuevoError("nº de cuenta duplicado");
+          duplicado = false;
+        }
+      }
+    }catch(Exception e){
+      jLabel1.setText("Error con la lista de cuentas");
+    }
+    return duplicado;
+  }
+  
   private boolean comprobarDouble(String cadena){
     boolean comprobado = true;
     try{
@@ -487,13 +540,26 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private void nuevoError(String error){
     EtiquetaErrores.setText(EtiquetaErrores.getText()+error+"\n");
   }
+  
+  private void borrarDatos(){
+    txtNombre.setText("");
+    txtApellidos.setText("");
+    txtCuenta.setText("");
+    txtSaldo.setText("");
+    txtInteres.setText("");
+    txtComMantenimiento.setText("");
+    txtDescubiertoMaximo.setText("");
+    txtInteresDescubierto.setText("");
+    txtComisionDescubierto.setText("");
+  }
+  
   private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
     padre.setContentPane(padre.panelPorDefecto);
     padre.pack();
   }//GEN-LAST:event_BotonCancelarActionPerformed
 
   private void cmbTiposdeCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTiposdeCuentaActionPerformed
-    
+    EtiquetaErrores.setText("");
     switch(cmbTiposdeCuenta.getSelectedItem().toString()){
       case "Cuenta de Ahorro":
         PanelComun.setVisible(true);
@@ -527,6 +593,10 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
     padre.pack();
   }//GEN-LAST:event_btnEntidadesActionPerformed
 
+  private void btnBorrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDatosActionPerformed
+    borrarDatos();
+  }//GEN-LAST:event_btnBorrarDatosActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton BotonCancelar;
   private javax.swing.JLabel EtiquetaErrores;
@@ -535,6 +605,7 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private javax.swing.JPanel PanelCuentaCorrientePersonal;
   private javax.swing.JPanel PanelInteres;
   private javax.swing.JButton botonGrabar;
+  private javax.swing.JButton btnBorrarDatos;
   private javax.swing.JButton btnEntidades;
   private javax.swing.JComboBox cmbTiposdeCuenta;
   private javax.swing.JLabel jLabel1;
@@ -559,4 +630,5 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private javax.swing.JTextField txtNombre;
   private javax.swing.JTextField txtSaldo;
   // End of variables declaration//GEN-END:variables
+
 }

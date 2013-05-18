@@ -7,12 +7,14 @@ public class PanelEntidades extends javax.swing.JPanel {
 
   Comprobaciones comprobar;
   AplicacionCuentaBancaria padre;
-  Hashtable hashLista;
+  Hashtable <String, Double> hashLista;
   public PanelEntidades(AplicacionCuentaBancaria pad) {
     padre = pad;
     initComponents();
-    hashLista = new Hashtable();  
+    hashLista = new Hashtable<>();  
     comprobar = new Comprobaciones();
+    txtSalida.setText("");
+    hashLista.clear();
   }
 
   /**
@@ -31,6 +33,8 @@ public class PanelEntidades extends javax.swing.JPanel {
     btnAdd = new javax.swing.JButton();
     btnVolver = new javax.swing.JButton();
     txtCantidad = new javax.swing.JTextField();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    txtSalida = new javax.swing.JTextArea();
 
     jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
     jLabel1.setText("Añadir entidades autorizadas");
@@ -57,6 +61,10 @@ public class PanelEntidades extends javax.swing.JPanel {
 
     txtCantidad.setText("500.31");
 
+    txtSalida.setColumns(20);
+    txtSalida.setRows(5);
+    jScrollPane1.setViewportView(txtSalida);
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
@@ -68,6 +76,10 @@ public class PanelEntidades extends javax.swing.JPanel {
             .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(txtEntidad))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(btnVolver)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAdd))
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addComponent(jLabel1)
@@ -76,10 +88,7 @@ public class PanelEntidades extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(txtCantidad)))
             .addGap(0, 0, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(btnVolver)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnAdd)))
+          .addComponent(jScrollPane1))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -95,7 +104,9 @@ public class PanelEntidades extends javax.swing.JPanel {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(jLabel3)
           .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnAdd)
           .addComponent(btnVolver))
@@ -104,6 +115,8 @@ public class PanelEntidades extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    padre.hashLista = hashLista;
+    hashLista.clear();
     padre.setContentPane(padre.panelCrearCuenta);
     padre.pack();
   }//GEN-LAST:event_btnVolverActionPerformed
@@ -115,8 +128,8 @@ public class PanelEntidades extends javax.swing.JPanel {
       if (num < 0){
         JOptionPane.showMessageDialog(this,"No se admiten cifras negativas","ERROR",JOptionPane.ERROR_MESSAGE);
       }else{
-        hashLista.put(txtEntidad, num);
-        padre.hashLista = hashLista;
+        hashLista.put(txtEntidad.getText(), num);
+        txtSalida.setText(txtSalida.getText()+txtEntidad.getText()+" "+num+"\n");
       }
     }catch (NumberFormatException nfe){
       JOptionPane.showMessageDialog(this,"Sólo se admiten números","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -129,7 +142,9 @@ public class PanelEntidades extends javax.swing.JPanel {
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
+  private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTextField txtCantidad;
   private javax.swing.JTextField txtEntidad;
+  private javax.swing.JTextArea txtSalida;
   // End of variables declaration//GEN-END:variables
 }

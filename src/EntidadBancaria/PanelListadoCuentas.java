@@ -1,47 +1,74 @@
 package EntidadBancaria;
 
+import java.text.SimpleDateFormat;
 import java.util.ListIterator;
+import javax.swing.table.DefaultTableModel;
 
 public class PanelListadoCuentas extends javax.swing.JPanel {
 
   AplicacionCuentaBancaria padre;
+  DefaultTableModel modelo;
 
   public PanelListadoCuentas(AplicacionCuentaBancaria pad) {
     initComponents();
     padre = pad;
-    labelListado.setText("");
     listarCuentas();
+    modelo =  new DefaultTableModel();
+    TablaListado.setVisible(false);
   }
 
   private void listarCuentas() {
-    ListIterator iterador;
-    try{
-      iterador = padre.listaCuentas.listIterator();
-      int cont=0;
-      while(iterador.hasNext()){
-        cont++;
-        CuentaBancaria cuenta = (CuentaBancaria) iterador.next();
-        nuevaLinea(cont+".-"+cuenta.toString());
+    // Modelo de de datos para el JTable
+    //DefaultTableModel modelo =  new DefaultTableModel();
+    //le asigno a la tabla el modelo de datos
+    try {
+      TablaListado.setModel(modelo);
+      // Creo las columnas
+      modelo.addColumn("Nombre");
+      modelo.addColumn("Fecha Nac.");
+      modelo.addColumn("Tipo Cuenta");
+      modelo.addColumn("Cuenta");
+      modelo.addColumn("Saldo");
+      ListIterator iterador;
+      try{
+        iterador = padre.listaCuentas.listIterator();
+        String [] registro = new String[5];
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+        while(iterador.hasNext()){
+          CuentaBancaria cuenta = (CuentaBancaria) iterador.next();
+          registro[0] = cuenta.titular.getApellidos()+", "+cuenta.titular.getNombre();
+          registro[1] = formatoFecha.format(cuenta.titular.getFechaNacim());
+          if (cuenta instanceof CuentaAhorro){
+            registro[2] = "Cuenta de Ahorro";
+          }else if (cuenta instanceof CuentaCorrienteEmpresa){
+            registro[2] = "Cuenta corriente de empresa";
+          }else{
+            registro[2] = "Cuenta corriente personal";
+          }
+          registro[3] = cuenta.getccc();
+          registro[4] = cuenta.getSaldo().toString();
+          // Añado el modelo a la tabla y sumo una fila
+          modelo.addRow(registro);
+        }
+        padre.pack();
+      }catch(Exception e){
+        jLabel1.setText("Error con la lista de cuentas");
       }
-      padre.pack();
-    }catch(Exception e){
-      labelListado.setText("Error con la lista de cuentas");
+    } catch (Exception e) {
     }
+    //TablaListado.setAutoResizeMode(57);
   }
-
-  private void nuevaLinea(String linea) {
-    labelListado.setText(labelListado.getText()+linea+"\n");
-  }
-  
+ 
  @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    labelListado = new javax.swing.JLabel();
     btnVolver = new javax.swing.JButton();
     btnListarCuentas = new javax.swing.JButton();
-
-    labelListado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Listado de todas las cuentas"));
+    jLabel1 = new javax.swing.JLabel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    TablaListado = new javax.swing.JTable();
+    labelMostrar = new javax.swing.JLabel();
 
     btnVolver.setText("Volver");
     btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -57,26 +84,55 @@ public class PanelListadoCuentas extends javax.swing.JPanel {
       }
     });
 
+    jLabel1.setText("Listado de todas las cuentas");
+
+    TablaListado.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null}
+      },
+      new String [] {
+        "Title 1", "Title 2", "Title 3", "Title 4"
+      }
+    ));
+    TablaListado.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+    TablaListado.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        TablaListadoMouseClicked(evt);
+      }
+    });
+    jScrollPane2.setViewportView(TablaListado);
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(labelListado, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-          .addGroup(layout.createSequentialGroup()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(labelMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
             .addComponent(btnVolver)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnListarCuentas)))
+            .addComponent(btnListarCuentas))
+          .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            .addComponent(jLabel1)
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(labelListado, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+        .addComponent(jLabel1)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(labelMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnVolver)
           .addComponent(btnListarCuentas))
@@ -85,18 +141,40 @@ public class PanelListadoCuentas extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-    labelListado.setText("");
     padre.setContentPane(padre.panelPorDefecto);
     padre.pack();
   }//GEN-LAST:event_btnVolverActionPerformed
 
   private void btnListarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarCuentasActionPerformed
+    TablaListado.setVisible(true);
     listarCuentas();
   }//GEN-LAST:event_btnListarCuentasActionPerformed
 
+  private void TablaListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaListadoMouseClicked
+    // obtenemos la fila seleccionada
+    int fila = TablaListado.getSelectedRow();
+    // obtenemos el valor de la cuenta que está en la posición
+    String nCuenta = TablaListado.getValueAt(fila, 3).toString();
+    
+    ListIterator iterador;
+    iterador = padre.listaCuentas.listIterator();
+    CuentaBancaria cuenta = null;
+    while(iterador.hasNext()){
+      if (cuenta.getccc().equals(nCuenta)){
+        labelMostrar.setText(cuenta.toString());
+      }
+      cuenta = (CuentaBancaria) iterador.next();
+    }
+    //labelMostrar.setText(nCuenta);
+    
+  }//GEN-LAST:event_TablaListadoMouseClicked
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTable TablaListado;
   private javax.swing.JButton btnListarCuentas;
   private javax.swing.JButton btnVolver;
-  private javax.swing.JLabel labelListado;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JLabel labelMostrar;
   // End of variables declaration//GEN-END:variables
 }

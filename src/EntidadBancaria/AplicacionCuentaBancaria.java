@@ -55,9 +55,9 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     listaCuentas.add(new CuentaCorrientePersonal
             (15.13, hashtableTemporal, (new Persona("Mauri","CCPersonal",fecha)), 1005.27, "01769247196617238484"));
     listaCuentas.add(new CuentaCorrientePersonal
-            (15.13, hashtableTemporal, (new Persona("Rubén","CCPersonal",fecha)), 1005.27, "01769247196617238484"));
+            (15.13, hashtableTemporal, (new Persona("Rubén","CCPersonal",fecha)), 1005.27, "09011902113228128416"));
     listaCuentas.add(new CuentaCorrientePersonal
-            (15.13, hashtableTemporal, (new Persona("Inés","CCPersonal",fecha)), 1005.27, "01769247196617238484"));
+            (15.13, hashtableTemporal, (new Persona("Inés","CCPersonal",fecha)), 1005.27, "89741837273107421595"));
     jLabel1.setText("Se han cargado los datos de prueba");
   }
   

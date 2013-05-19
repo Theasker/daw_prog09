@@ -32,9 +32,10 @@ public class CuentaCorrienteEmpresa extends CuentaBancaria {
   }
   @Override
   public String toString(){
-    String texto;
-    texto = titular.toString()+" "+ccc+"("+saldo+")"+", Descubierto max.: "+descubiertoMax+
-            ", int.descubierto: "+interesDescubierto+", comisión desc: "+comisionDescubierto;
-    return texto;
+//    String texto;
+//    texto = titular.toString()+" "+ccc+"("+saldo+")"+", Descubierto max.: "+descubiertoMax+
+//            ", int.descubierto: "+interesDescubierto+", comisión desc: "+comisionDescubierto;
+//    return texto;
+    return ccc;
   }
 }

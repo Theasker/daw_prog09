@@ -85,8 +85,6 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     jLabel6.setText("Comisión de mantenimiento");
 
-    txtComMantenimiento.setText("7.51");
-
     javax.swing.GroupLayout PanelCuentaCorrientePersonalLayout = new javax.swing.GroupLayout(PanelCuentaCorrientePersonal);
     PanelCuentaCorrientePersonal.setLayout(PanelCuentaCorrientePersonalLayout);
     PanelCuentaCorrientePersonalLayout.setHorizontalGroup(
@@ -123,11 +121,11 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     jLabel9.setText("Comisión Descubierto:");
 
-    txtDescubiertoMaximo.setText("520.21");
-
-    txtInteresDescubierto.setText("19.11");
-
-    txtComisionDescubierto.setText("14.24");
+    txtComisionDescubierto.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtComisionDescubiertoActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout PanelCuentaCorrienteEmpresaLayout = new javax.swing.GroupLayout(PanelCuentaCorrienteEmpresa);
     PanelCuentaCorrienteEmpresa.setLayout(PanelCuentaCorrienteEmpresaLayout);
@@ -167,13 +165,11 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     jLabel2.setText("Nombre: ");
 
-    txtNombre.setText("Mauri");
     txtNombre.setToolTipText("Introduzca el nombre del cliente");
     txtNombre.setMaximumSize(new java.awt.Dimension(10, 30));
 
     jLabel3.setText("Apellidos: ");
 
-    txtApellidos.setText("Segura");
     txtApellidos.setToolTipText("Introduzca los apellidos del cliente");
     txtApellidos.setMaximumSize(new java.awt.Dimension(10, 30));
 
@@ -186,10 +182,7 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     jLabel10.setText("Saldo:");
 
-    txtSaldo.setText("1053.21");
     txtSaldo.setToolTipText("");
-
-    txtCuenta.setText("52890686798440413488");
 
     javax.swing.GroupLayout PanelComunLayout = new javax.swing.GroupLayout(PanelComun);
     PanelComun.setLayout(PanelComunLayout);
@@ -323,8 +316,6 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
 
     jLabel5.setText("Tipo de interés:");
 
-    txtInteres.setText("7.31");
-
     javax.swing.GroupLayout PanelInteresLayout = new javax.swing.GroupLayout(PanelInteres);
     PanelInteres.setLayout(PanelInteresLayout);
     PanelInteresLayout.setHorizontalGroup(
@@ -358,7 +349,7 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           .addGroup(layout.createSequentialGroup()
             .addGap(100, 100, 100)
             .addComponent(cmbTiposdeCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap())
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,6 +427,8 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
           EtiquetaErrores.setText("Se ha agregado una Cuenta Corriente de Empresa");          
           break;
       }
+      padre.panelIngresarRetirar.actualizarCombo();
+      padre.panelDatosCuenta.actualizarCombo();
     }else{
       JOptionPane.showMessageDialog
               (this,"Los datos no se han validado correctamente","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -596,6 +589,10 @@ public class PanelNuevaCuenta extends javax.swing.JPanel {
   private void btnBorrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDatosActionPerformed
     borrarDatos();
   }//GEN-LAST:event_btnBorrarDatosActionPerformed
+
+  private void txtComisionDescubiertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComisionDescubiertoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_txtComisionDescubiertoActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton BotonCancelar;

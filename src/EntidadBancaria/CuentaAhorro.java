@@ -18,8 +18,9 @@ public class CuentaAhorro extends CuentaBancaria{
   
   @Override
   public String toString(){
-    String texto;
-    texto = titular.toString()+" "+ccc+"("+saldo+")"+"Interés: "+interesRemuneracion;
-    return texto;
+//    String texto;
+//    texto = titular.toString()+" "+ccc+"("+saldo+")"+"Interés: "+interesRemuneracion;
+//    return texto;
+    return ccc;
   }
 }

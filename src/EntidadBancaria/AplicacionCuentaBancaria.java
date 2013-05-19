@@ -14,19 +14,28 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
 
   
   ArrayList <CuentaBancaria> listaCuentas;
+  Hashtable <String, Double> hashLista;
+  
   PanelNuevaCuenta panelCrearCuenta;
   PanelEntidades panelEntidades;
   PanelListadoCuentas panelListado;
+  PanelIngresarRetirar panelIngresarRetirar;
+  PanelDatosCuenta panelDatosCuenta;
   JPanel panelPorDefecto;
-  Hashtable <String, Double> hashLista;
+  
+  
+  
   public AplicacionCuentaBancaria() {
     initComponents();
     listaCuentas = new ArrayList<>();
     hashLista = new Hashtable<>();
+    
+    panelPorDefecto = (JPanel) getContentPane(); // Panel principal
     panelCrearCuenta = new PanelNuevaCuenta(this);
     panelEntidades = new PanelEntidades(this);
     panelListado = new PanelListadoCuentas(this);
-    panelPorDefecto = (JPanel) getContentPane(); // Panel principal
+    panelIngresarRetirar = new PanelIngresarRetirar(this);
+    panelDatosCuenta = new PanelDatosCuenta(this);
   }
 
   private void cargarDatosPrueba() {
@@ -59,6 +68,10 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     listaCuentas.add(new CuentaCorrientePersonal
             (15.13, hashtableTemporal, (new Persona("Inés","CCPersonal",fecha)), 1005.27, "89741837273107421595"));
     jLabel1.setText("Se han cargado los datos de prueba");
+    for(CuentaBancaria cuenta : listaCuentas){
+      panelIngresarRetirar.actualizarCombo();
+      panelDatosCuenta.actualizarCombo();
+    }
   }
   
   @SuppressWarnings("unchecked")
@@ -73,8 +86,6 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     menuExit = new javax.swing.JMenuItem();
     editMenu = new javax.swing.JMenu();
     menuIngreso = new javax.swing.JMenuItem();
-    menuRetirada = new javax.swing.JMenuItem();
-    menuConsultaSaldo = new javax.swing.JMenuItem();
     helpMenu = new javax.swing.JMenu();
     menuListadoCuentas = new javax.swing.JMenuItem();
     menuDatosCuenta = new javax.swing.JMenuItem();
@@ -119,16 +130,13 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
     editMenu.setText("Movimientos");
 
     menuIngreso.setMnemonic('t');
-    menuIngreso.setText("Realizar ingreso");
+    menuIngreso.setText("Ingresar / retirar / saldo");
+    menuIngreso.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuIngresoActionPerformed(evt);
+      }
+    });
     editMenu.add(menuIngreso);
-
-    menuRetirada.setMnemonic('y');
-    menuRetirada.setText("Retirada de efectivo");
-    editMenu.add(menuRetirada);
-
-    menuConsultaSaldo.setMnemonic('p');
-    menuConsultaSaldo.setText("Consulta de saldo");
-    editMenu.add(menuConsultaSaldo);
 
     menuBar.add(editMenu);
 
@@ -146,6 +154,11 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
 
     menuDatosCuenta.setMnemonic('a');
     menuDatosCuenta.setText("Ver datos de una cuenta");
+    menuDatosCuenta.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuDatosCuentaActionPerformed(evt);
+      }
+    });
     helpMenu.add(menuDatosCuenta);
 
     menuBar.add(helpMenu);
@@ -189,12 +202,25 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
 
   private void btnDatosPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosPruebaActionPerformed
     cargarDatosPrueba();
+    btnDatosPrueba.setVisible(false);
   }//GEN-LAST:event_btnDatosPruebaActionPerformed
 
   private void menuListadoCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListadoCuentasActionPerformed
     setContentPane(panelListado);
+    panelListado.listarCuentas();
+    
     pack();
   }//GEN-LAST:event_menuListadoCuentasActionPerformed
+
+  private void menuIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIngresoActionPerformed
+    setContentPane(panelIngresarRetirar);
+    pack();
+  }//GEN-LAST:event_menuIngresoActionPerformed
+
+  private void menuDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDatosCuentaActionPerformed
+    setContentPane(panelDatosCuenta);
+    pack();
+  }//GEN-LAST:event_menuDatosCuentaActionPerformed
 
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -233,12 +259,10 @@ public class AplicacionCuentaBancaria extends javax.swing.JFrame {
   private javax.swing.JMenu helpMenu;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JMenuBar menuBar;
-  private javax.swing.JMenuItem menuConsultaSaldo;
   private javax.swing.JMenuItem menuDatosCuenta;
   private javax.swing.JMenuItem menuExit;
   private javax.swing.JMenuItem menuIngreso;
   private javax.swing.JMenuItem menuListadoCuentas;
   private javax.swing.JMenuItem menuNuevaCuenta;
-  private javax.swing.JMenuItem menuRetirada;
   // End of variables declaration//GEN-END:variables
 }

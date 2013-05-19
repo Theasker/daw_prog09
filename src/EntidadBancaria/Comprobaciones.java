@@ -4,15 +4,15 @@ public class Comprobaciones {
   
   public boolean comprobarCuenta(String cuenta){
     boolean comprueba = false;
-    System.out.println("Validando la cuenta");
+    //System.out.println("Validando la cuenta");
     if (cuenta.length() != 20){ // la cuenta no tiene 20 digitos
-        System.out.println("No hay 20 dígitos");
+//        System.out.println("No hay 20 dígitos");
         comprueba = false;
     }else{ // la cuenta si tiene 20 digitos
       // comprobamos si lo introducido son enteros
       comprueba = this.sonEnteros(cuenta);
       if (comprueba == false){ // No son enteros
-        System.out.println("Hay que introducir digitos");
+//        System.out.println("Hay que introducir digitos");
       }else{ // Los dígitos son enteros y comprobamos los digitos de control
         //Calculamos los dígitos de control y los comparamos con lo introducidos
         if(this.obtenerDigitosControl(cuenta).equals(cuenta.substring(8,10))){
@@ -30,7 +30,7 @@ public class Comprobaciones {
          Integer.parseInt(cadena.substring(x, x+1));
       }catch(NumberFormatException e){ //Se ejecuta cuando no es un nº entero
         
-        System.out.println(cadena.substring(x, x+1)+" no es un entero");
+//        System.out.println(cadena.substring(x, x+1)+" no es un entero");
         return false;
       } 
         }

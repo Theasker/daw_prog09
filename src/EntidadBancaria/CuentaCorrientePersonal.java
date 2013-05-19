@@ -20,8 +20,9 @@ public class CuentaCorrientePersonal extends CuentaCorriente {
   
   @Override
   public String toString(){
-    String texto;
-    texto = titular.toString()+" "+ccc+"("+saldo+")"+", comision: "+comision;
-    return texto;
+//    String texto;
+//    texto = titular.toString()+" "+ccc+"("+saldo+")"+", comision: "+comision;
+//    return texto;
+    return ccc;
   }
 }

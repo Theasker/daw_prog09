@@ -129,9 +129,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtComMantenimiento">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="7.51"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -214,19 +211,13 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDescubiertoMaximo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="520.21"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtInteresDescubierto">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="19.11"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtComisionDescubierto">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="14.24"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtComisionDescubiertoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -324,7 +315,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mauri"/>
             <Property name="toolTipText" type="java.lang.String" value="Introduzca el nombre del cliente"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[10, 30]"/>
@@ -338,7 +328,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Segura"/>
             <Property name="toolTipText" type="java.lang.String" value="Introduzca los apellidos del cliente"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[10, 30]"/>
@@ -368,14 +357,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtSaldo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="1053.21"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCuenta">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="52890686798440413488"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -513,9 +498,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtInteres">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="7.31"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
